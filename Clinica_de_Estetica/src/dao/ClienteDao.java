@@ -1,10 +1,9 @@
-package br.edu.ifnmg.bancodados.dao;
+package dao;
 
-import br.edu.ifnmg.bancodados.dao.ConectaBanco;
-import br.edu.ifnmg.bancodados.dao.DaoInterface;
-import br.edu.ifnmg.bancodados.dao.Dao;
-import br.edu.ifnmg.bancodados.dao.*;
-import static br.edu.ifnmg.bancodados.dao.Dao.getUltimoId;
+import dao.ConectaBanco;
+import dao.DaoInterface;
+import dao.Dao;
+import static dao.Dao.getUltimoId;
 import entity.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

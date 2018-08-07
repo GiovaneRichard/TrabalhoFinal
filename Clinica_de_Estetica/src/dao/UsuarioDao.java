@@ -1,4 +1,4 @@
-package br.edu.ifnmg.bancodados.dao;
+package dao;
 
 import entity.Usuario;
 import java.sql.Connection;

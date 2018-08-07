@@ -6,10 +6,10 @@
 package gui;
 
 import entity.Usuario;
-import br.edu.ifnmg.bancodados.dao.UsuarioDao;
+import dao.UsuarioDao;
 import com.sun.security.ntlm.Client;
 import entity.Cliente;
-import br.edu.ifnmg.bancodados.dao.ClienteDao;
+import dao.ClienteDao;
 import entity.ClienteTableModel;
 import entity.ModeloTabela;
 import java.sql.Timestamp;

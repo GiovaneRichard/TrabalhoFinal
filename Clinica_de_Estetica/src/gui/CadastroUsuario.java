@@ -6,8 +6,7 @@
 package gui;
 
 import entity.Usuario;
-import br.edu.ifnmg.bancodados.dao.*;
-import br.edu.ifnmg.bancodados.dao.UsuarioDao;
+import dao.UsuarioDao;
 import javax.swing.JOptionPane;
 
 /**

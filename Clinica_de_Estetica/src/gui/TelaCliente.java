@@ -5,7 +5,7 @@
  */
 package gui;
 
-import br.edu.ifnmg.bancodados.dao.ClienteDao;
+import dao.ClienteDao;
 import com.sun.javafx.image.impl.IntArgb;
 import entity.Cliente;
 import java.util.List;
