@@ -19,7 +19,7 @@ public class Cliente {
     private String cidade;
     private String uf;
     private String sexo;
-    private String dtnascimento;
+   
     
     public Cliente(int id, String nome, String telefone, String email){
         this.id = id;
@@ -28,7 +28,7 @@ public class Cliente {
         this.email = email;
     }
 
-    public Cliente(int id, String nome, String telefone, String email, String cpf, String rg, String rua, String bairro, String cidade, String uf, String sexo, String dtnascimento) {
+    public Cliente(int id, String nome, String telefone, String email, String cpf, String rg, String rua, String bairro, String cidade, String uf, String sexo) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
@@ -40,7 +40,7 @@ public class Cliente {
         this.cidade = cidade;
         this.uf = uf;
         this.sexo = sexo;
-        this.dtnascimento = dtnascimento;
+       
     }
 
     public Cliente() {
@@ -139,13 +139,6 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public String getDtnascimento() {
-        return dtnascimento;
-    }
-
-    public void setDtnascimento(String dtnascimento) {
-        this.dtnascimento = dtnascimento;
-    } 
     
     @Override
     public String toString(){

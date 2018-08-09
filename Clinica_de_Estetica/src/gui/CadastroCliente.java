@@ -447,13 +447,13 @@ public class CadastroCliente extends javax.swing.JFrame {
         
         try {
             
-            // Conversão data para salvar no banco 
-            String dia = jfNascimento.getText().substring(0,2);
-            String mes = jfNascimento.getText().substring(3,5);
-            String ano = jfNascimento.getText().substring(6);
-            String dataBanco = ano + "-" +  mes + "-" + dia;
-            
-            cliente.setDtnascimento(dataBanco);
+//            // Conversão data para salvar no banco 
+//            String dia = jfNascimento.getText().substring(0,2);
+//            String mes = jfNascimento.getText().substring(3,5);
+//            String ano = jfNascimento.getText().substring(6);
+//            String dataBanco = ano + "-" +  mes + "-" + dia;
+//            
+//            cliente.setDtnascimento(dataBanco);
             cliente.setNome(txtNome.getText());
             cliente.setCpf(jfCpf.getText());
             
@@ -543,7 +543,7 @@ public class CadastroCliente extends javax.swing.JFrame {
        // jcCidade.setText(jTableClientes.getValueAt(indiceAtual, 8).toString());
        // jcUf.setText(jTableClientes.getValueAt(indiceAtual, 9).toString());
        // jcSexo.setText(jTableClientes.getValueAt(indiceAtual, 10).toString());
-         jfNascimento.setText(jTableClientes.getValueAt(indiceAtual, 11).toString());
+         
          
         // jcCidade.add("Montezuma", this);
     }//GEN-LAST:event_jTableClientesMouseClicked
@@ -632,7 +632,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             clientes.setId(1);
         
         for(Cliente a: listaClientes){
-            Object[] objeto = new Object[12];
+            Object[] objeto = new Object[11];
             
             objeto[0] = a.getId();
             objeto[1] = a.getNome();
@@ -645,7 +645,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             objeto[8] = a.getCidade();
             objeto[9] = a.getUf();
             objeto[10] = a.getSexo();
-            objeto[11] = a.getDtnascimento();
+   
             
             
             modelo.addRow(objeto);
