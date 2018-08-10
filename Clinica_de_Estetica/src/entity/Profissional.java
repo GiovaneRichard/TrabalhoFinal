@@ -9,9 +9,9 @@ public class Profissional {
     private Integer id;
     private String nome;
     private Integer cbo;
-    private Long cpf;
-    private String telefone;
+    private String cpf;
     private String celular;
+    private String telefone;
     private String email;
 
     public Integer getId() {
@@ -38,11 +38,11 @@ public class Profissional {
         this.cbo = cbo;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

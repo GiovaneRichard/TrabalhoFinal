@@ -15,7 +15,28 @@ public class ProfissionalDao implements DaoInterface<Profissional>{
 
     @Override
     public Integer salvar(Profissional o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int idresposta = 0;
+        
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt;
+        
+        try {
+            
+            pstmt = con.prepareStatement("INSERT INTO profissional(nome, cbo, cpf, celular, telefone, email) VALUES(?, ?, ?, ?, ?, ?)");
+            
+            pstmt.setString(1, o.getNome());
+            pstmt.setInt(2, o.getCbo());
+            pstmt.setString(3, o.getCpf());
+            pstmt.setString(4, o.getCelular());
+            pstmt.setString(5, o.getTelefone());
+            pstmt.setString(6, o.getEmail());
+            
+            pstmt.execute();
+        } catch (SQLException ex) {
+            System.out.println("Possíveis Erros: " + ex);
+        }
+        return idresposta;
     }
 
     @Override
