@@ -34,12 +34,12 @@ public class ClienteDao implements DaoInterface<Cliente> {
             // Inserir um novo objeto
             if (o.getId() == 0) {
                 
-                pstmt = con.prepareStatement("INSERT INTO cliente(nome, telefone, email, cpf, rg, rua, bairro, cidade, uf, sexo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                pstmt = con.prepareStatement("INSERT INTO cliente(nome, telefone, email, cpf, rua, bairro, cidade, uf, sexo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);");
             } else {
                 //Atualiza um objeto existente
                 pstmt = con.prepareStatement("UPDATE cliente "
                         + "SET nome = ?, telefone = ?, email = ?, "
-                        + "cpf = ?, rg = ?, rua = ?, bairro = ?, cidade = ?, "
+                        + "cpf = ?,  rua = ?, bairro = ?, cidade = ?, "
                         + "uf = ?, sexo = ?,  id = ? "
                         + "where id = ?;");
                 pstmt.setInt(12, o.getId());
@@ -49,7 +49,6 @@ public class ClienteDao implements DaoInterface<Cliente> {
             pstmt.setString(2, o.getTelefone());
             pstmt.setString(3, o.getEmail());
             pstmt.setString(4, o.getCpf());
-            pstmt.setString(5, o.getRg());
             pstmt.setString(6, o.getRua());
             pstmt.setString(7, o.getBairro());
             pstmt.setString(8, o.getCidade());
@@ -76,33 +75,33 @@ public class ClienteDao implements DaoInterface<Cliente> {
         return idResposta;
     }
 
-    public void Salve(Cliente o) {
+    public boolean Salve(Cliente o) {
 
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt;
 
         try {
-            pstmt = con.prepareStatement("INSERT INTO cliente(id, nome, telefone, email, cpf, rg, rua, bairro, cidade, uf, sexo)" + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            pstmt = con.prepareStatement("INSERT INTO cliente(nome, telefone, email, cpf, rua, bairro, cidade, uf, sexo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
-            pstmt.setInt(1, o.getId());
-            pstmt.setString(2, o.getNome());
-            pstmt.setString(3, o.getTelefone());
-            pstmt.setString(4, o.getEmail());
-            pstmt.setString(5, o.getCpf());
-            pstmt.setString(6, o.getRg());
-            pstmt.setString(7, o.getRua());
-            pstmt.setString(8, o.getBairro());
-            pstmt.setString(9, o.getCidade());
-            pstmt.setString(10, o.getUf());
-            pstmt.setString(11, o.getSexo());
+          
+            pstmt.setString(1, o.getNome());
+            pstmt.setString(2, o.getTelefone());
+            pstmt.setString(3, o.getEmail());
+            pstmt.setString(4, o.getCpf());
+            pstmt.setString(6, o.getRua());
+            pstmt.setString(7, o.getBairro());
+            pstmt.setString(8, o.getCidade());
+            pstmt.setString(9, o.getUf());
+            pstmt.setString(10, o.getSexo());
             
-            pstmt.execute();
-            
+            pstmt.executeQuery();
+            return true;
         } catch (SQLException ex) {
             System.out.println("Possíveis Erros: " + ex);
             JOptionPane.showMessageDialog(null,"Erro ao salvar os dados");
+            return false;
         }
-
+        
     }
 
     public List<Cliente> read(String descricao) {
@@ -128,7 +127,6 @@ public class ClienteDao implements DaoInterface<Cliente> {
                 cl.setTelefone(rs.getString("telefone"));
                 cl.setEmail(rs.getString("email"));
                 cl.setCpf(rs.getString("cpf"));
-                cl.setRg(rs.getString("rg"));
                 cl.setRua(rs.getString("rua"));
                 cl.setBairro(rs.getString("bairro"));
                 cl.setCidade(rs.getString("cidade"));
@@ -371,7 +369,6 @@ public class ClienteDao implements DaoInterface<Cliente> {
                         rs.getString("telefone"),
                         rs.getString("email"),
                         rs.getString("cpf"),
-                        rs.getString("rg"),
                         rs.getString("rua"),
                         rs.getString("bairro"),
                         rs.getString("cidade"),

@@ -45,6 +45,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 btnAcessarActionPerformed(evt);
             }
         });
+        btnAcessar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAcessarKeyPressed(evt);
+            }
+        });
         getContentPane().add(btnAcessar);
         btnAcessar.setBounds(140, 190, 130, 40);
 
@@ -79,9 +84,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-       
-        
-       Usuario usuario =  new Usuario();
+
+        Usuario usuario = new Usuario();
 //        
 //        user.setUsuario(txtLogin.getText());
 //        
@@ -99,31 +103,65 @@ public class TelaLogin extends javax.swing.JFrame {
             String password = new String(txtSenha.getPassword());
             usuario.setUsuario(txtLogin.getText());
             usuario.setSenha(password);
-            
-            if( usuarioD.autenticar(usuario) ){
+
+            if (usuarioD.autenticar(usuario)) {
                 // habilita campos para o acesso do administrador
-                
+
                 //TelaPrincipal tela = new TelaPrincipal();
                 Principal tela = new Principal();
                 tela.setVisible(true);
                 dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou Senha incorreto\nTente novamente ", "Erro 01", JOptionPane.ERROR_MESSAGE);
                 // Limpar os campos
                 txtLogin.setText("");
                 txtSenha.setText("");
-                
+
                 txtLogin.requestFocus();
             }
-            
+
         } catch (Exception e) {
         }
 
     }//GEN-LAST:event_btnAcessarActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+        Usuario usuario = new Usuario();
+
+        // Autenticando usuários
+        UsuarioDao usuarioD = new UsuarioDao();
+
+        try {
+            String password = new String(txtSenha.getPassword());
+            usuario.setUsuario(txtLogin.getText());
+            usuario.setSenha(password);
+
+            if (usuarioD.autenticar(usuario)) {
+                // habilita campos para o acesso do administrador
+
+                //TelaPrincipal tela = new TelaPrincipal();
+                Principal tela = new Principal();
+                tela.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou Senha incorreto\nTente novamente ", "Erro 01", JOptionPane.ERROR_MESSAGE);
+                // Limpar os campos
+                txtLogin.setText("");
+                txtSenha.setText("");
+
+                txtLogin.requestFocus();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao autenticar o usuário!" + e);
+                    
+        }
+
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAcessarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAcessarKeyPressed
 
     /**
      * @param args the command line arguments

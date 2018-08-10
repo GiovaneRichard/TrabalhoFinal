@@ -455,14 +455,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 //            
 //            cliente.setDtnascimento(dataBanco);
             cliente.setNome(txtNome.getText());
-            cliente.setCpf(jfCpf.getText());
-            
-            if(txtRg.getText().isEmpty()){
-                cliente.setRg("000.000.000");
-            }else{
-                cliente.setRg(txtRg.getText());
-            }
-                
+            cliente.setCpf(jfCpf.getText());     
             cliente.setSexo(jcSexo.getSelectedItem().toString());
             cliente.setRua(txtEndereco.getText());
             cliente.setBairro(txtBairro.getText());
@@ -537,7 +530,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jfTelefone.setText(jTableClientes.getValueAt(indiceAtual, 2).toString());
         txtEmail.setText(jTableClientes.getValueAt(indiceAtual, 3).toString());
         jfCpf.setText(jTableClientes.getValueAt(indiceAtual, 4).toString());
-        txtRg.setText(jTableClientes.getValueAt(indiceAtual, 5).toString());
         txtEndereco.setText(jTableClientes.getValueAt(indiceAtual, 6).toString());
         txtBairro.setText(jTableClientes.getValueAt(indiceAtual, 7).toString());
        // jcCidade.setText(jTableClientes.getValueAt(indiceAtual, 8).toString());
@@ -557,7 +549,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jfTelefone.setText(jTableClientes.getValueAt(indiceAtual, 2).toString());
         txtEmail.setText(jTableClientes.getValueAt(indiceAtual, 3).toString());
         jfCpf.setText(jTableClientes.getValueAt(indiceAtual, 4).toString());
-        txtRg.setText(jTableClientes.getValueAt(indiceAtual, 5).toString());
         txtEndereco.setText(jTableClientes.getValueAt(indiceAtual, 6).toString());
         txtBairro.setText(jTableClientes.getValueAt(indiceAtual, 7).toString());
        // jcCidade.setText(jTableClientes.getValueAt(indiceAtual, 8).toString());
@@ -639,7 +630,6 @@ public class CadastroCliente extends javax.swing.JFrame {
             objeto[2] = a.getTelefone();
             objeto[3] = a.getEmail();
             objeto[4] = a.getCpf();
-            objeto[5] = a.getRg();
             objeto[6] = a.getRua();
             objeto[7] = a.getBairro();
             objeto[8] = a.getCidade();
