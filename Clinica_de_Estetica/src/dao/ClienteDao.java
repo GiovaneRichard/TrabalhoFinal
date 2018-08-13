@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class ClienteDao implements DaoInterface<Cliente> {
 
+    Dao dao = new Dao();
+    
     @Override
     public Integer salvar(Cliente o) {
 
@@ -75,31 +77,36 @@ public class ClienteDao implements DaoInterface<Cliente> {
         return idResposta;
     }
 
-    public boolean Salve(Cliente o) {
-
-        Connection con = ConectaBanco.getConexao();
-        PreparedStatement pstmt;
-
+    public int Salve(Cliente o) {
+        int idResposta =0;
+        
         try {
-            pstmt = con.prepareStatement("INSERT INTO cliente(nome, telefone, email, cpf, rua, bairro, cidade, uf, sexo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            Connection con = ConectaBanco.getConexao();
+            PreparedStatement pstmt;
             
-          
-            pstmt.setString(1, o.getNome());
-            pstmt.setString(2, o.getTelefone());
-            pstmt.setString(3, o.getEmail());
-            pstmt.setString(4, o.getCpf());
+            pstmt = con.prepareStatement("INSERT INTO cliente " 
+                    + "(id, nome, telefone, email, cpf, rua, bairro, cidade, uf, sexo) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            
+            pstmt.setInt(1, o.getId());
+            pstmt.setString(2, o.getNome());
+            pstmt.setString(3, o.getTelefone());
+            pstmt.setString(4, o.getEmail());
+            pstmt.setString(5, o.getCpf());
             pstmt.setString(6, o.getRua());
             pstmt.setString(7, o.getBairro());
             pstmt.setString(8, o.getCidade());
             pstmt.setString(9, o.getUf());
             pstmt.setString(10, o.getSexo());
             
-            pstmt.executeQuery();
-            return true;
+            idResposta = dao.getUltimoId();
+            
+            pstmt.executeUpdate();
+            return idResposta;
         } catch (SQLException ex) {
             System.out.println("Possíveis Erros: " + ex);
             JOptionPane.showMessageDialog(null,"Erro ao salvar os dados");
-            return false;
+            return idResposta;
         }
         
     }

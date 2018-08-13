@@ -331,7 +331,9 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             
             // Salva os dados no banco
             //clienteD.salvar(clientes);
-            clienteD.Salve(clientes);
+            int x = clienteD.Salve(clientes);
+            
+            System.out.println("Ultimo Id: " + x);
             
             // Limpando os campos
             limpaCampo();

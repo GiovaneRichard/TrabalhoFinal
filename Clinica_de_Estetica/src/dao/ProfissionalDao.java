@@ -23,14 +23,15 @@ public class ProfissionalDao implements DaoInterface<Profissional>{
         
         try {
             
-            pstmt = con.prepareStatement("INSERT INTO profissional(nome, cbo, cpf, celular, telefone, email) VALUES(?, ?, ?, ?, ?, ?)");
+            pstmt = con.prepareStatement("INSERT INTO profissional(id, nome, cbo, cpf, celular, telefone, email) VALUES(?, ?, ?, ?, ?, ?, ?)");
             
-            pstmt.setString(1, o.getNome());
-            pstmt.setInt(2, o.getCbo());
-            pstmt.setString(3, o.getCpf());
-            pstmt.setString(4, o.getCelular());
-            pstmt.setString(5, o.getTelefone());
-            pstmt.setString(6, o.getEmail());
+            pstmt.setInt(1, o.getId());
+            pstmt.setString(2, o.getNome());
+            pstmt.setInt(3, o.getCbo());
+            pstmt.setString(4, o.getCpf());
+            pstmt.setString(5, o.getCelular());
+            pstmt.setString(6, o.getTelefone());
+            pstmt.setString(7, o.getEmail());
             
             pstmt.execute();
         } catch (SQLException ex) {

@@ -19,19 +19,6 @@ public class Cliente {
     private String uf;
     private String sexo;
    
-    public Cliente(String nome, String telefone, String email, String cpf, String rua, String bairro, String cidade, String uf, String sexo) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.cpf = cpf;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.sexo = sexo;
-    }
-    
-
     public Cliente(int id, String nome, String telefone, String email, String cpf, String rua, String bairro, String cidade, String uf, String sexo) {
         this.id = id;
         this.nome = nome;
@@ -43,15 +30,12 @@ public class Cliente {
         this.cidade = cidade;
         this.uf = uf;
         this.sexo = sexo;
-       
     }
 
     public Cliente() {
        
     }
-
     
-
     public Integer getId() {
         return id;
     }
