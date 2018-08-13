@@ -5,18 +5,28 @@
  */
 package gui;
 
+import com.jgoodies.looks.plastic.theme.DarkStar;
 import dao.ClienteDao;
+import dao.ProfissionalDao;
 import entity.Cliente;
+import entity.Profissional;
+import java.awt.SystemColor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author giovane richard
  */
 public class TelaProfissional extends javax.swing.JInternalFrame {
-    Cliente clientes = new Cliente();
-    ClienteDao clienteD = new ClienteDao();
-    
+
+    Profissional prof = new Profissional();
+    ProfissionalDao profD = new ProfissionalDao();
+
     /**
      * Creates new form TelaProfissional
      */
@@ -54,6 +64,27 @@ public class TelaProfissional extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jfCpf = new javax.swing.JFormattedTextField();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Cadastro Profissional Esteticista");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jLabel1.setText("Código");
 
@@ -185,9 +216,9 @@ public class TelaProfissional extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegisto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRegisto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -217,28 +248,25 @@ public class TelaProfissional extends javax.swing.JInternalFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         try {
-
-            clientes.setNome(txtNome.getText());
-            clientes.setCpf(jfCpf.getText());
-            
             // Recebe os dados do formulário
-            clientes.setUf(jfCelular.getText());
-            clientes.setTelefone(jfTelefone.getText());
-            clientes.setEmail(txtEmail.getText());
+            prof.setNome(txtNome.getText());
+            prof.setCbo(Integer.parseInt(txtRegisto.getText()));
+            prof.setCpf(jfCpf.getText());
+            prof.setCelular(jfCelular.getText());
+            prof.setTelefone(jfTelefone.getText());
+            prof.setEmail(txtEmail.getText());
 
-            if(clientes.getId() == null)
-            clientes.setId(0);
-
+//            if(prof.getId() == null)
+//            prof.setId(0);
             // Salva os dados no banco
-            //clienteD.salvar(clientes);
-            clienteD.Salve(clientes);
+            profD.salvar(prof);
 
             // Limpando os campos
             limpaCampo();
 
         } catch (Exception e) {
 
-            System.out.println("Erro ao cadastrar o cliente!");
+            System.out.println("Erro ao cadastrar o Profissional!");
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -248,24 +276,54 @@ public class TelaProfissional extends javax.swing.JInternalFrame {
         int resposta = 0;
         resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir o cliente?");
 
-        if(resposta == JOptionPane.YES_OPTION){
-            clientes.setId(Integer.parseInt((txtCodigo.getText())));
-            clienteD.excluir(clientes);
+        if (resposta == JOptionPane.YES_OPTION) {
+            prof.setId(Integer.parseInt((txtCodigo.getText())));
+            profD.excluir(prof);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+//        // TODO add your handling code here:
+//        // lookandfeel muda de cores
+//        // biblioteca     looksdemo-2.3.1.jar
+//        //SkyBlue()
+//        //BrownSugar()
+//        // DarkStar()  
+//        //DesertGreen()
+//        //Silver()
+//        //ExperienceRoyale()
+//        try {
+//            PlasticLookAndFeel.setPlasticTheme(new DarkStar());
+//            try {
+//                UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+//            } catch (InstantiationException ex) {
+//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IllegalAccessException ex) {
+//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (UnsupportedLookAndFeelException ex) {
+//                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        SwingUtilities.updateComponentTreeUI(this);
+//       
+//       //TelaProfissional.setBackground(SystemColor.BLACK);
+    }//GEN-LAST:event_formInternalFrameOpened
+
     // Limpa os campos do formulário
-    public void limpaCampo(){
+    public void limpaCampo() {
         txtNome.setText("");
-            jfCpf.setText("");
-            txtCodigo.setText("");
-            jfTelefone.setText("");
-            txtEmail.setText("");
-            
-            // passando o focus
-            txtNome.requestFocus();
+        jfCpf.setText("");
+        txtCodigo.setText("");
+        jfTelefone.setText("");
+        txtEmail.setText("");
+
+        // passando o focus
+        txtNome.requestFocus();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

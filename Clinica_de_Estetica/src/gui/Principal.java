@@ -5,13 +5,20 @@
  */
 package gui;
 
+import com.jgoodies.looks.plastic.theme.DarkStar;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -130,7 +137,12 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/EsteticistaMenu.png"))); // NOI18N
-        jMenuItem2.setText("Esteticista");
+        jMenuItem2.setText("Profissional");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/CadastroCliMenu.png"))); // NOI18N
@@ -201,18 +213,18 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         
+
         TelaCliente cadCliente = new TelaCliente();
         jDesktopPanePrincipal.add(cadCliente);
         cadCliente.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // Opção de sair do sistema
-        int sair = JOptionPane.showConfirmDialog(null,"Deseja realmente sarir?", "Atenção",JOptionPane.YES_NO_OPTION);
-        
-        if(sair == JOptionPane.YES_OPTION){
+        int sair = JOptionPane.showConfirmDialog(null, "Deseja realmente sarir?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (sair == JOptionPane.YES_OPTION) {
             System.exit(sair);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -231,16 +243,26 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        
+
         //Insere Data e Hora na barra de data e hora
         // Data 
         Date datasitema = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         lblData.setText(formato.format(datasitema));
-        
+
         // Hora
         Timer timer = new Timer(1000, new hora());
         timer.start();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // chama a tela Profissional
+        TelaProfissional telaprofissional = new TelaProfissional();
+        jDesktopPanePrincipal.add(telaprofissional);
+        telaprofissional.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,15 +300,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Método para pegar a hora
-    class hora implements ActionListener{
+    class hora implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             Calendar now = Calendar.getInstance();
             lblHora.setText(String.format("%1$tH:%1$tH:%1tS", now));
         }
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPanePrincipal;
     private javax.swing.JMenu jMenu1;
