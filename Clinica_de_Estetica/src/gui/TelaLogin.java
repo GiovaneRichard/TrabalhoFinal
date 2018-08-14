@@ -1,8 +1,16 @@
 package gui;
 
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.theme.DarkStar;
 import entity.Usuario;
 import dao.UsuarioDao;
+import java.awt.SystemColor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -36,6 +44,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         btnAcessar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -162,6 +175,36 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnAcessarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAcessarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAcessarKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+//        //        // TODO add your handling code here:
+//        // lookandfeel muda de cores
+//        // biblioteca     looksdemo-2.3.1.jar
+//        //SkyBlue()
+//        //BrownSugar()
+//        // DarkStar()  
+//        //DesertGreen()
+//        //Silver()
+//        //ExperienceRoyale()
+//        try {
+//            PlasticLookAndFeel.setPlasticTheme(new DarkStar());
+//            try {
+//                UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+//            } catch (InstantiationException ex) {
+//                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IllegalAccessException ex) {
+//                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (UnsupportedLookAndFeelException ex) {
+//                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+//        SwingUtilities.updateComponentTreeUI(this);
+       
+        //jDesktopPanePrincipal.setBackground(SystemColor.controlDkShadow);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

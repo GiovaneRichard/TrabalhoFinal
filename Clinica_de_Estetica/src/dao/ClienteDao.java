@@ -102,6 +102,7 @@ public class ClienteDao implements DaoInterface<Cliente> {
             idResposta = dao.getUltimoId();
             
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
             return idResposta;
         } catch (SQLException ex) {
             System.out.println("Possíveis Erros: " + ex);
