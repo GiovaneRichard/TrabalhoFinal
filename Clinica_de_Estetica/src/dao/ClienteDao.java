@@ -77,6 +77,12 @@ public class ClienteDao implements DaoInterface<Cliente> {
         return idResposta;
     }
 
+    /**
+     * SAlve
+     * @param o
+     * @return 
+     */
+    
     public int Salve(Cliente o) {
         int idResposta =0;
         

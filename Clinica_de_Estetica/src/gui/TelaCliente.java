@@ -256,7 +256,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nome"
+                "Código", "Nome", "Telefone", "Email", "CPF", "Rua", "Bairro", "Cidade", "UF"
             }
         ));
         jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -286,7 +286,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                         .addComponent(jButton4))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -305,7 +305,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 981, 549);
+        setBounds(0, 0, 1199, 549);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
